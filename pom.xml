@@ -50,7 +50,7 @@
                             <appendAssemblyId>false</appendAssemblyId>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.foxguardsolutions.RomanNumeralConverter</mainClass>
+                                    <mainClass>com.foxguardsolutions.romannumeralconverter.RomanNumeralConverter</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

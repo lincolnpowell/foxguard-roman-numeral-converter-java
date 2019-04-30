@@ -1,6 +1,5 @@
-import com.foxguardsolutions.RomanNumeralConverter;
+import com.foxguardsolutions.romannumeralconverter.RomanNumeralConverter;
 import java.io.File;
-import java.net.URISyntaxException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,16 +29,46 @@ public class RomanNumeralConverterTest {
     }
 
     @Test
-    public void testEmptyFirstLineInFileShouldReturnSecondLineOfIII() throws URISyntaxException {
-        assertEquals("III", romanNumeralConverter.readFile(new File(this.getClass().getClassLoader().getResource("test1.txt").toURI()).getAbsolutePath()), "test1.txt, despite empty first line, must read entire file returning III");
+    public void testEmptyFileShouldThrowException() {
+        Throwable throwable = assertThrows(RuntimeException.class, () -> {
+            romanNumeralConverter.readFile(new File(this.getClass().getClassLoader().getResource("emptyFile.txt").toURI()).getAbsolutePath());
+        });
+        assertEquals("File is empty", throwable.getMessage());
     }
 
     @Test
-    public void testEmptyFileShouldThrowException() {
-        Throwable throwable = assertThrows(RuntimeException.class, () -> {
-            romanNumeralConverter.readFile(new File(this.getClass().getClassLoader().getResource("test2.txt").toURI()).getAbsolutePath());
-        });
-        assertEquals("File is empty", throwable.getMessage());
+    public void testRomanNumeralIShouldReturn1() {
+        assertEquals(1, romanNumeralConverter.convertRomanNumeralsToDecimal("I"), "Roman numeral I must be 1");
+    }
+
+    @Test
+    public void testRomanNumeralVShouldReturn5() {
+        assertEquals(5, romanNumeralConverter.convertRomanNumeralsToDecimal("V"), "Roman numeral V must be 5");
+    }
+
+    @Test
+    public void testRomanNumeralXShouldReturn10() {
+        assertEquals(10, romanNumeralConverter.convertRomanNumeralsToDecimal("X"), "Roman numeral X must be 10");
+    }
+
+    @Test
+    public void testRomanNumeralLShouldReturn50() {
+        assertEquals(50, romanNumeralConverter.convertRomanNumeralsToDecimal("L"), "Roman numeral L must be 50");
+    }
+
+    @Test
+    public void testRomanNumeralCShouldReturn100() {
+        assertEquals(100, romanNumeralConverter.convertRomanNumeralsToDecimal("C"), "Roman numeral C must be 100");
+    }
+
+    @Test
+    public void testRomanNumeralDShouldReturn500() {
+        assertEquals(500, romanNumeralConverter.convertRomanNumeralsToDecimal("D"), "Roman numeral D must be 500");
+    }
+
+    @Test
+    public void testRomanNumeralMShouldReturn1000() {
+        assertEquals(1000, romanNumeralConverter.convertRomanNumeralsToDecimal("M"), "Roman numeral M must be 1000");
     }
 
     @Test
@@ -60,6 +89,11 @@ public class RomanNumeralConverterTest {
     @Test
     public void testRomanNumeralIVIShouldReturn5() {
         assertEquals(5, romanNumeralConverter.convertRomanNumeralsToDecimal("IVI"), "Roman numeral IVI must be 5");
+    }
+
+    @Test
+    public void testRomanNumeralMMXIIShouldReturn2012() {
+        assertEquals(2012, romanNumeralConverter.convertRomanNumeralsToDecimal("MMXII"), "Roman numeral MMXII must be 2012");
     }
 
     @Test

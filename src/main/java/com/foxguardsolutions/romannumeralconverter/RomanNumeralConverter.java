@@ -1,4 +1,4 @@
-package com.foxguardsolutions;
+package com.foxguardsolutions.romannumeralconverter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +19,16 @@ public class RomanNumeralConverter {
         romanNumerals.put('M', 1000);
     }
 
+    private int getDecimalValue(char romanNumeral) {
+        if (romanNumerals.containsKey(romanNumeral)) {
+            return romanNumerals.get(romanNumeral);
+        } else if (Character.isSpaceChar(romanNumeral)) {
+            throw new RuntimeException("Roman numeral string contains space");
+        } else {
+            throw new RuntimeException("Roman numeral string contains invalid character " + romanNumeral);
+        }
+    }
+
     public int convertRomanNumeralsToDecimal(String romanNumerals) {
         int result = 0;
         for (int i = 0; i < romanNumerals.length(); i++) {
@@ -34,19 +44,9 @@ public class RomanNumeralConverter {
         return result;
     }
 
-    private int getDecimalValue(char romanNumeral) {
-        if (romanNumerals.containsKey(romanNumeral)) {
-            return romanNumerals.get(romanNumeral);
-        } else if (Character.isSpaceChar(romanNumeral)) {
-            throw new RuntimeException("Roman numeral string contains space");
-        } else {
-            throw new RuntimeException("Roman numeral string contains invalid character " + romanNumeral);
-        }
-    }
-
     public String readFile(String path) {
         try (Scanner scanner = new Scanner(new File(path))) {
-            return scanner.next();
+            return scanner.nextLine();
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found using path " + path);
         } catch (NoSuchElementException e) {

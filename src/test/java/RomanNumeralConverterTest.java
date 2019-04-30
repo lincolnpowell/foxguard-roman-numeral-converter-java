@@ -1,4 +1,4 @@
-import com.foxguardsolutions.RomanNumeralConverter;
+import com.foxguardsolutions.romannumeralconverter.RomanNumeralConverter;
 import java.io.File;
 import java.net.URISyntaxException;
 import org.junit.jupiter.api.AfterEach;

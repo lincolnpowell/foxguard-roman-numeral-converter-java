@@ -1,6 +1,5 @@
 import com.foxguardsolutions.romannumeralconverter.RomanNumeralConverter;
 import java.io.File;
-import java.net.URISyntaxException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,14 +29,9 @@ public class RomanNumeralConverterTest {
     }
 
     @Test
-    public void testEmptyFirstLineInFileShouldReturnSecondLineOfIII() throws URISyntaxException {
-        assertEquals("III", romanNumeralConverter.readFile(new File(this.getClass().getClassLoader().getResource("test1.txt").toURI()).getAbsolutePath()), "test1.txt, despite empty first line, must read entire file returning III");
-    }
-
-    @Test
     public void testEmptyFileShouldThrowException() {
         Throwable throwable = assertThrows(RuntimeException.class, () -> {
-            romanNumeralConverter.readFile(new File(this.getClass().getClassLoader().getResource("test2.txt").toURI()).getAbsolutePath());
+            romanNumeralConverter.readFile(new File(this.getClass().getClassLoader().getResource("emptyFile.txt").toURI()).getAbsolutePath());
         });
         assertEquals("File is empty", throwable.getMessage());
     }
@@ -95,6 +89,11 @@ public class RomanNumeralConverterTest {
     @Test
     public void testRomanNumeralIVIShouldReturn5() {
         assertEquals(5, romanNumeralConverter.convertRomanNumeralsToDecimal("IVI"), "Roman numeral IVI must be 5");
+    }
+
+    @Test
+    public void testRomanNumeralMMXIIShouldReturn2012() {
+        assertEquals(2012, romanNumeralConverter.convertRomanNumeralsToDecimal("MMXII"), "Roman numeral MMXII must be 2012");
     }
 
     @Test

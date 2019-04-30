@@ -46,7 +46,7 @@ public class RomanNumeralConverter {
 
     public String readFile(String path) {
         try (Scanner scanner = new Scanner(new File(path))) {
-            return scanner.next();
+            return scanner.nextLine();
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found using path " + path);
         } catch (NoSuchElementException e) {

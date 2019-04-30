@@ -43,6 +43,41 @@ public class RomanNumeralConverterTest {
     }
 
     @Test
+    public void testRomanNumeralIShouldReturn1() {
+        assertEquals(1, romanNumeralConverter.convertRomanNumeralsToDecimal("I"), "Roman numeral I must be 1");
+    }
+
+    @Test
+    public void testRomanNumeralVShouldReturn5() {
+        assertEquals(5, romanNumeralConverter.convertRomanNumeralsToDecimal("V"), "Roman numeral V must be 5");
+    }
+
+    @Test
+    public void testRomanNumeralXShouldReturn10() {
+        assertEquals(10, romanNumeralConverter.convertRomanNumeralsToDecimal("X"), "Roman numeral X must be 10");
+    }
+
+    @Test
+    public void testRomanNumeralLShouldReturn50() {
+        assertEquals(50, romanNumeralConverter.convertRomanNumeralsToDecimal("L"), "Roman numeral L must be 50");
+    }
+
+    @Test
+    public void testRomanNumeralCShouldReturn100() {
+        assertEquals(100, romanNumeralConverter.convertRomanNumeralsToDecimal("C"), "Roman numeral C must be 100");
+    }
+
+    @Test
+    public void testRomanNumeralDShouldReturn500() {
+        assertEquals(500, romanNumeralConverter.convertRomanNumeralsToDecimal("D"), "Roman numeral D must be 500");
+    }
+
+    @Test
+    public void testRomanNumeralMShouldReturn1000() {
+        assertEquals(1000, romanNumeralConverter.convertRomanNumeralsToDecimal("M"), "Roman numeral M must be 1000");
+    }
+
+    @Test
     public void testRomanNumeralVIIShouldReturn7() {
         assertEquals(7, romanNumeralConverter.convertRomanNumeralsToDecimal("VII"), "Roman numeral VII must be 7");
     }
